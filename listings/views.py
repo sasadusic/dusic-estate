@@ -158,3 +158,7 @@ def delete_list(request, id):
 
 def about(request):
     return render(request, 'about.html')
+
+@login_required(login_url='login_user')
+def korpa(request):
+    return  render(request, 'korpa.html')
