@@ -16,19 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from listings.views import index, list, retrieve, create, update_list, delete_list, about
-
+from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('list/', list, name='list'),
-    path('<int:id>/', retrieve, name='retrieve'),
-    path('<int:id>/update_list', update_list, name='update_list'),
-    path('<int:id>/delete_list', delete_list, name='delete_list'),
-    path('create/', create, name='create'),
-    # path('<int:pk>/', update_list, name='update'),
-    path('about/', about, name='about'),
+    path('', include('listings.urls'))
 ]
 
 if settings.DEBUG:

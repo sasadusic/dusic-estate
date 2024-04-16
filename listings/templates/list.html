@@ -1,48 +1,57 @@
-{% extends 'layout.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-1 my-4"><i class="fa-solid fa-house-flag" style="color:#338a7a !important;"></i> Real Estate Company Dusic</h1>
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-header">Property informations</div>
-            <div class="card-body">
-              <h4 class="card-title">List of aweiable Propertys</h4>
-              <p class="card-text">
-                  <table class="table table-hover table-striped taple-light">
-                      <thead>
-                      <tr style="color: #fff;">
-                        <th scope="col">Title</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Bathrooms</th>
-                        <th scope="col">Bedrooms</th>
-                        <th scope="col">Square meters</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Details</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {% for property in listings %}
-                            <tr class="table-light table-hover table-striped">
-                                <td>{{ property.title }}</td>
-                                <td>${{ property.price }}</td>
-                                <td>{{ property.address }}</td>
-                                <td>{{ property.bathrooms }}</td>
-                                <td>{{ property.bedrooms }}</td>
-                                <td>{{ property.squares }} m<sup>2</sup></td>
-                                <td><img src="{{ listing.image.url }}" alt=""></td>
-                                <td><a class="nav-link" href="{% url 'retrieve' property.id %}">View Details</a></td>
-                                
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </p>
+<div id="home-over" class="home-over"></div>
+    {% if messages%}
+    <div class="card-cont">
+        {% for m in messages %}
+        <div class="message">{{ m }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+<!-- Main -->
+<h1 class="header pnd-24">Nasa Ponuda Obuce</h1>
+<!-- Search Forma -->
+<form id="search-form" class="search-cont" action="{% url 'list' %}" method="GET">
+    <input id="search-input" class="input" type="text" name="q" placeholder="Pretrazite Obucu" autofocus>
+    <button class="btn btn-color">Pretrazi</button>
+</form>
+<!-- Search Forma -->
+<div class="prod-card-cont">
+    {% for property in listings %}
+    <!-- Card -->
+        <div class="card">
+            <div class="card-img-cont">
+            <img src="{{ property.image.url }}" alt="" class="prod-image">
+        </div>
+        <div class="card-right">
+            
+            <div class="card-top">
+                <h2 class="card-header">
+                    {{ property.title }}
+                </h2>
+            </div>
+        <div class="card-body">
+            <p class="phar big mb-12"><span class="bold">Address:</span>{{ property.address }}</p>
+            <p class="phar big mb-12"><span class="bold">Squares:</span>{{ property.squares }}</p>
+            <p class="phar big mb-12"><span class="bold">Bedrooms:</span>{{ property.bedrooms }}</p><a class="btn btn-color" href="{% url 'retrieve' property.id %}">View Details</a>
+            
+        </div>
+        <div class="card-footer">
+            <div class="footer-left">
+                {{ property.price }}€
+            </div>
+            <div class="loc"><i class="fa-solid fa-shoe-prints"></i></i>
+            </div>
+            <div class="settings"><i class="fa-solid fa-gear"></i>
             </div>
         </div>
     </div>
 </div>
+<!-- Card -->
+{% endfor %}
+
 </div>
+<!-- Main -->
 {% endblock %}

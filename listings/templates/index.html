@@ -1,12 +1,49 @@
-{% extends 'layout.html' %}
-{% load static %}
-{% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-1 my-4"><i class="fa-solid fa-landmark-dome" style="color:#338a7a !important;"></i> Welcome to the estate listing page</h1>
-            <img id="about" src="{% static 'images/a.jpg' %}" alt="Hi!" style="width: 100%;" />
-        </div>
-    </div>
+{% extends "base.html" %} {% load static %} {% block body %} {% if messages%}
+<div class="card-cont">
+  {% for m in messages %}
+  <div class="message">{{ m }}</div>
+  {% endfor %}
 </div>
+{% endif %}
+<!-- Main -->
+<div class="home-up">
+  <div id="home-over" class="home-over"></div>
+  <div class="home-left">
+    <h1 class="home-header"><img src="{% static 'images/logo-big.png' %}" alt="" class="logo-big" style="width: 80px; margin-right: var(--space-mid);" />Marko<br />Obuca I odeca</h1>
+    <p class="home-phar">
+      Korak u udobnosti, klik do stila! Kupujte obuću i aksesoare iz udobnosti
+      svog doma uz našu online prodavnicu.
+    </p>
+    <div class="btn-cont">
+      <a href="{% url 'index' %}" class="btn btn-color">Vidi Nasu Ponudu</a>
+      <button class="btn see-offer">Kontaktiraj nas</button>
+    </div>
+  </div>
+  <div class="home-right">
+    <img src="{% static 'images/bg.png' %}" alt="" class="right-img" />
+  </div>
+</div>
+<div class="home-down">
+  <div class="cont">
+    <div class="nike-cont"><i class="fa fa-check" aria-hidden="true"></i></div>
+    <p class="down-phar">Odlican Kvalitet<br />Prva Klasa Kvaliteta</p>
+  </div>
+  <div class="cont">
+    <div class="nike-cont"><i class="fa fa-check" aria-hidden="true"></i></div>
+    <p class="down-phar">Uvozna Roba<br />Nemacka Austrija</p>
+  </div>
+  <div class="cont">
+    <div class="nike-cont"><i class="fa fa-check" aria-hidden="true"></i></div>
+    <p class="down-phar">Brendirana Roba<br />Garantovan Kvalitet</p>
+  </div>
+  <div class="cont">
+    <div class="nike-cont"><i class="fa fa-check" aria-hidden="true"></i></div>
+    <p class="down-phar">Poznate Marke<br />Nike, Adidas, Puma</p>
+  </div>
+  <div class="cont">
+    <div class="nike-cont"><i class="fa fa-check" aria-hidden="true"></i></div>
+    <p class="down-phar">Veliki Izbor<br />Vise od 200 Artikala</p>
+  </div>
+</div>
+<!-- Main -->
 {% endblock %}

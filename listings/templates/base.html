@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dusic Estate</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images.logo.png' %}"/>
+             <!-- Link to css -->
+             <link rel="stylesheet" href="{% static 'css/style.css' %}">
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+             <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="theme-toggle"><div class="toggle-btn"></div></div>
+    <div class="side" id="side">
+        <div class="side-up">
+
+            <div id="logo" class="logo"><img src="{% static 'images/logo.png' %}" alt="" class="logo-image" style="width: 24px;height: 24px;"/><a href="{% url 'index' %}">
+                Pocetna
+            </a>
+            <i class="fa fa-bars" aria-hidden="true"></i></div>
+                <nav class="navbar">
+                    <a class="nav-link {% if request.path == '/' %}nav-active{% endif %}" href="{% url 'index' %}" >
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <p>
+                            Pocetna
+                        </p>
+                    </a>
+            <a class="nav-link {% if request.path == '/list/' %}nav-active{% endif %}" href="{% url 'list' %}"><i class="fa-solid fa-shoe-prints"></i>
+                <p>
+                    Property List
+                </p>
+            </a>
+            <a class="nav-link {% if request.path == '/create/' %}nav-active{% endif %}" href="{% url 'create' %}"><i class="fa-solid fa-plus"></i>
+                <p>
+                    Create New
+                </p>
+            </a>
+            {% if user.is_superuser %}
+                <a class="nav-link" href="{% url 'admin:index' %}"><i class="fa-solid fa-user-tie"></i>
+                    <p>
+                        Admin Panel
+                    </p>
+                </a>
+                <a class="nav-link {% if request.path == '/kreiraj_obucu/' %}nav-active{% endif %}" href="{% url 'about' %}"><i class="fa-solid fa-plus"></i>
+                    <p>
+                        About
+                    </p>
+                </a>
+            {% endif %}
+        </nav>
+    </div>
+        <div class="profile-info">
+            {% if user.is_authenticated %} 
+            <a class="nav-link {% if request.path == '/korpa/' %}nav-active{% endif %}" href="{% url 'korpa' %}"><i class="fa-solid fa-cart-plus"></i>
+                <p>
+                    Moja Korpa
+                </p>
+                {% if request.user.praćenje_set.all %}
+                <div class="item-num">{{ request.user.praćenje_set.all|length }}</div>
+                {% endif %}
+            </a>
+            <a class="nav-link {% if request.path == '/logout/' %}nav-active{% endif %}" href="{% url 'logout' %}"><i class="fa-solid fa-user-large-slash"></i>
+                <p>
+                    Logout
+                </p>
+            </a>
+            <a class="nav-link {% if request.path == '/profile/' %}nav-active{% endif %}" href="{% url 'profile' %}"><i class="fa-solid fa-user-gear"></i>
+                <p>
+                    {{ request.user.username.title }}
+                </p>
+            </a>
+
+            {% else %} 
+            <a class="nav-link {% if request.path == '/register/' %}nav-active{% endif %}" href="{% url 'register' %}"><i class="fa-solid fa-user-plus"></i>
+                <p>
+                    Register
+                </p>
+            </a>
+            <a class="nav-link {% if request.path == '/login/' %}nav-active{% endif %}" href="{% url 'login' %}"><i class="fa-solid fa-user-check"></i>
+                <p>
+                    login
+                </p>
+            </a>
+            <a class="nav-link {% if request.path == '/profile/' %}nav-active{% endif %}" href="{% url 'login' %}"><i class="fa-solid fa-question"></i>
+                <p>
+                    Guest User
+                </p>
+            </a>
+                {% endif %} 
+        </div>
+    </div>
+    <main class="home" id="home">
+        {% block body %}
+        {% endblock %}
+    </main>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+</body>
+</html>
