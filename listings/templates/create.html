@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 my-4"><i class="fa-solid fa-building-circle-check" style="color:#338a7a !important;"></i> Create New Listing</h1>
+            {% if message %}
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Well done!</strong> {{ message }}
+              </div>
+            {% endif %}
+            {% if error %}
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Oh snap!</strong> {{ error }}
+              </div>
+            {% endif %}
+            <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Create Listing</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 my-4"><i class="fa-solid fa-city" style="color:#338a7a !important;"></i> Property Details</h1>
+            <h1>{{ listing.title }}</h1>
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Property Details</div>
+                <div class="card-body">
+                  <h4 class="card-title">{{ listing.title}}</h4>
+                  <p class="card-text">
+                    {% if listing.image %}
+                    <img src="{{ listing.image.url }}" alt="Image" style="width: 100%;">
+                    {% endif %}
+                    <h5>Price: ${{ listing.price }}</h5>
+                    <h5>Address: {{ listing.address }}</h5>
+                    <h5>Bathrooms: {{ listing.bathrooms }}</h5>
+                    <h5>Bedrooms: {{ listing.bedrooms }}</h5>
+                    <h5>Square Meters: {{ listing.squares }} m<sup>2</sup></h5>
+                    <h5>Created: {{ listing.created }}</h5>
+                    <h5>Updated: {{ listing.updated }}</h5>
+                    {% if request.user.is_staff %}
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-info" type="button"><a href="{% url 'update_list' listing.id %}" style="text-decoration: none; color: #fff;">Update</a></button>
+                      <button class="btn btn-danger" type="button"><a href="{% url 'delete_list' listing.id %}" style="text-decoration: none; color: #fff;">Delete List</a></button>
+                    </div>
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

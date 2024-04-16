@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 my-4"><i class="fa-solid fa-house-flag" style="color:#338a7a !important;"></i> Real Estate Company Dusic</h1>
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Property informations</div>
+            <div class="card-body">
+              <h4 class="card-title">List of aweiable Propertys</h4>
+              <p class="card-text">
+                  <table class="table table-hover table-striped taple-light">
+                      <thead>
+                      <tr style="color: #fff;">
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Bathrooms</th>
+                        <th scope="col">Bedrooms</th>
+                        <th scope="col">Square meters</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for property in listings %}
+                            <tr class="table-light table-hover table-striped">
+                                <td>{{ property.title }}</td>
+                                <td>${{ property.price }}</td>
+                                <td>{{ property.address }}</td>
+                                <td>{{ property.bathrooms }}</td>
+                                <td>{{ property.bedrooms }}</td>
+                                <td>{{ property.squares }} m<sup>2</sup></td>
+                                <td><img src="{{ listing.image.url }}" alt=""></td>
+                                <td><a class="nav-link" href="{% url 'retrieve' property.id %}">View Details</a></td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

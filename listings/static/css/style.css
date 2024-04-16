@@ -1,0 +1,35 @@
+#about{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+}
+#pabout, .pabout{
+    font-size: 20px;
+    margin-top: 100px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(1, 1, 1, 0.675);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 50px;
+    border-top: 1px solid rgb(65, 65, 65);
+    border-left: 1px solid rgb(64, 64, 64);
+}
+.labout{
+    font-size: 20px;
+    margin-top: 100px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.219);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 50px;
+    border-top: 1px solid rgb(65, 65, 65);
+    border-left: 1px solid rgb(64, 64, 64);
+}
+#footer{
+    color: #338a7a;
+}
