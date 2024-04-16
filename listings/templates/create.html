@@ -1,30 +1,45 @@
-{% extends 'layout.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-1 my-4"><i class="fa-solid fa-building-circle-check" style="color:#338a7a !important;"></i> Create New Listing</h1>
-            {% if message %}
-            <div class="alert alert-dismissible alert-success">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Well done!</strong> {{ message }}
-              </div>
-            {% endif %}
-            {% if error %}
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Oh snap!</strong> {{ error }}
-              </div>
-            {% endif %}
-            <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit">Create Listing</button>
-                  </div>
-            </form>
+<div id="home-over" class="home-over"></div>
+    <h1 class="header pnd-24">Dusic Estate</h1>
+    {% if messages%}
+    <div class="card-cont">
+        {% for m in messages %}
+        <div class="message">{{ m }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+<div class="card-cont">
+    <!-- Card -->
+    <div class="card">
+            <div class="new-card-img">
+                <img src="{% static 'images/new.png' %}" alt=“image”>
+            </div>
+            <div class="card-right">
+                
+                <div class="card-top">
+                    <h1 class="card-header">
+                        Create New LIsting
+                    </h1>
+                </div>
+                <div class="card-body">
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% if field.errors %}
+                    <div class="message">{{ field.errors }}</div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    <button type="submit" id="submit" class="btn btn-color">Create listing</button>
+                </form>
+            </div>
         </div>
     </div>
+    <!-- Card -->
 </div>
 {% endblock %}

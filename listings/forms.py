@@ -77,12 +77,12 @@ class ListingForm(ModelForm):
         }
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'bathrooms': forms.NumberInput(attrs={'class': 'form-control'}),
-            'bedrooms': forms.NumberInput(attrs={'class': 'form-control'}),
-            'squares': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control'})
+            'title': forms.TextInput(attrs={'class': 'input'}),
+            'price': forms.NumberInput(attrs={'class': 'input'}),
+            'address': forms.TextInput(attrs={'class': 'input'}),
+            'bathrooms': forms.NumberInput(attrs={'class': 'input'}),
+            'bedrooms': forms.NumberInput(attrs={'class': 'input'}),
+            'squares': forms.NumberInput(attrs={'class': 'input'}),
+            'description': forms.TextInput(attrs={'class': 'input'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'input'})
         }
