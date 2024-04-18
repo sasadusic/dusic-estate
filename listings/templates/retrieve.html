@@ -1,36 +1,48 @@
-{% extends 'layout.html' %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-1 my-4"><i class="fa-solid fa-city" style="color:#338a7a !important;"></i> Property Details</h1>
-            <h1>{{ listing.title }}</h1>
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">Property Details</div>
-                <div class="card-body">
-                  <h4 class="card-title">{{ listing.title}}</h4>
-                  <p class="card-text">
-                    {% if listing.image %}
-                    <img src="{{ listing.image.url }}" alt="Image" style="width: 100%;">
-                    {% endif %}
-                    <h5>Price: ${{ listing.price }}</h5>
-                    <h5>Address: {{ listing.address }}</h5>
-                    <h5>Bathrooms: {{ listing.bathrooms }}</h5>
-                    <h5>Bedrooms: {{ listing.bedrooms }}</h5>
-                    <h5>Square Meters: {{ listing.squares }} m<sup>2</sup></h5>
-                    <h5>Created: {{ listing.created }}</h5>
-                    <h5>Updated: {{ listing.updated }}</h5>
-                    {% if request.user.is_staff %}
-                    <div class="d-grid gap-2">
-                      <button class="btn btn-info" type="button"><a href="{% url 'update_list' listing.id %}" style="text-decoration: none; color: #fff;">Update</a></button>
-                      <button class="btn btn-danger" type="button"><a href="{% url 'delete_list' listing.id %}" style="text-decoration: none; color: #fff;">Delete List</a></button>
-                    </div>
-                    {% endif %}
-                  </p>
-                </div>
-              </div>
+<div id="home-over" class="home-over"></div>
+    {% if messages%}
+    <div class="card-cont">
+        {% for m in messages %}
+        <div class="message">{{ m }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+<!-- Main -->
+    <!-- Card -->
+    <div id="card-datails" class="card-details">
+        <div class="card-left">
+            <!-- Slike -->
+            <div class="detail-img-cont">
+                
+                <img class="img-detail" src="{{ listing.image.url }}" alt="Shoe Image">
+            </div>
+            <!-- Slike -->
+            
+        </div>
+        <div class="card-right">
+            <div class="card-top">
+                <h2 class="details-card-header">
+                    {{ listing.title }}
+                </h2>
+            </div>
+        <div class="card-body">
+            <p class="phar big mb-12"><span class="bold">Address:</span>{{ listing.address }}</p>
+            <p class="phar big mb-12"><span class="bold">Bathrooms:</span>{{ listing.bathrooms }}</p>
+            <p class="phar big mb-12"><span class="bold">Bedrooms:</span>{{ listing.bedrooms }}</p>
+            <p class="phar big mb-12"><span class="bold">Square Meters:</span>{{ listing.squares }}</p>
+            <p class="phar opis mb-12"><span class="bold">Created:</span>{{ listing.created }}</p>
+            <p class="phar opis mb-12"><span class="bold">Updated:</span>{{ listing.updated }}</p>
+            <div class="cena-cont"><span class="cena-span">Price:</span><span class="cena bold">{{ listing.price }}€</span></div>
+            {% if user.is_superuser %}
+            <a href="{% url 'update_list' listing.id %}" class="btn btn-warnning mt-12 mb-12"">Update listing</a>
+            <a href="{% url 'delete_list' listing.id %}" class="btn btn-danger mt-12 mb-12"  onclick="return confirm('Jesi li siguran');">Delete listing</a>
+            {% endif %}
         </div>
     </div>
 </div>
+<!-- Card -->
+<!-- Main -->
 {% endblock %}

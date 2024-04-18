@@ -164,6 +164,7 @@
 .nav-active{
     background: var(--main);
     border-right: 4px solid var(--text);
+    color: var(--bg-light);
 }
 .profile-info{
     position: relative;
@@ -671,13 +672,8 @@ input[type=checkbox]{
     right: -18px;
 }
 img.img-detail{
-    grid-column: span 2;
+    grid-column: span 6;
     width: 100%;
-}
-img.img-detail-1{
-    grid-row: 1 / 2 !important;
-    grid-column: 1 / 7 !important;
-    /* width: 100%; */
 }
 .image-modal{
     border: none;
@@ -741,6 +737,19 @@ img.img-detail-1{
     font-weight: 700;
 }
 /* Obuca */
+/* About */
+.container{
+    padding: var(--space-mid);
+}
+.row{
+    display: flex;
+    align-items: center;
+    gap: var(--space-mid);
+}
+.col{
+
+}
+/* About */
 /* Dark Theme */
 /* Side */
 .dark-theme #side{
@@ -941,6 +950,9 @@ img.img-detail-1{
     }
     img.img-detail-1{
         display: block;
+    }
+    .row{
+        flex-direction: column;;
     }
 }
 /* Extra small devices (portrait phones, less than 576px) */
